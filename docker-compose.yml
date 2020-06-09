@@ -1,0 +1,16 @@
+﻿version: '3'
+services:
+ ms-sql-server:
+  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  environment:
+   ACCEPT_EULA: "Y"
+   SA_PASSWORD: "Pa55word2020"
+   MSSQL_PID: Express
+  ports:
+   - "1433:1433"
+ balkana-api:
+  build: .
+  environment:
+   DBServer: "ms-sql-server"
+  ports:
+   - "8080:80"
